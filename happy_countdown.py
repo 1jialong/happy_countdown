@@ -50,8 +50,7 @@ holiday_names = {
     "Spring Festival": "🐰 春    节",
     "Tomb-sweeping Day": "🍃 清明节",
     "Labour Day": "🧹 劳动节",
-    "Dragon Boat Festival": "🐲 端午节",
-    "National Day": "🎃 七    夕",
+    "Dragon Boat Festival": "🐲 端午节"
 }
 
 for holiday in get_holidays(include_weekends=False):
@@ -107,7 +106,10 @@ def main():
             msg += f" 距离【💰 薪水日】只有 {(money_day - today).days} 天\n\n"
             break
 
-    msg += "为了美好的假期，撸起袖子加油干！！！"
+    if today in get_holidays() or today.weekday() >= 5:  # 周末或假期
+        msg += "今天是休息日,请享受生活,Lucky dog! 😁"
+    else:
+        msg += "为了美好的假期，撸起袖子加油干！！！"
 
     data = {
         "msgtype": "text",
